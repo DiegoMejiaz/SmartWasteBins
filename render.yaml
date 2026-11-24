@@ -1,0 +1,24 @@
+# Blueprint de Render: crea el servicio web desde este repositorio.
+# Las credenciales de Aiven se escriben en el panel de Render (sync: false), nunca aquí.
+services:
+  - type: web
+    name: smart-waste-bin
+    runtime: docker
+    plan: free
+    region: virginia
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /index.html
+    autoDeploy: true
+    envVars:
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_USER
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_NAME
+        value: bd_smartbin
+      - key: DB_CA_CERT
+        sync: false

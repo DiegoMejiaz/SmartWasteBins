@@ -1,0 +1,14 @@
+# Archivos que no se copian a la imagen de producción
+.git
+.gitignore
+.gitattributes
+.dockerignore
+*.pdf
+*.md
+*.py
+*.drawio
+*.pem
+.env
+diagramas/
+herramientas/
+bd_smartbin.sql

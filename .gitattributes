@@ -1,0 +1,6 @@
+# Los scripts de Linux deben conservar saltos de línea LF
+*.sh text eol=lf
+Dockerfile text eol=lf
+*.pdf binary
+*.jpg binary
+*.png binary

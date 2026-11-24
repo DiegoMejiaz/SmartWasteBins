@@ -1,0 +1,9 @@
+# Credenciales: nunca se suben al repositorio
+.env
+*.pem
+ca.pem
+
+# Sistema
+Thumbs.db
+desktop.ini
+.DS_Store

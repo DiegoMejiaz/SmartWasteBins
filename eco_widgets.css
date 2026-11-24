@@ -1,0 +1,501 @@
+/* ==========================================================================
+   SMART WASTE BIN (SWB) - ECO WIDGETS & NOTIFICATIONS SYSTEM
+   Estilos para Chatbot Gemini, Testimonios, Soporte, Carné QR y Loading Screen
+   Diseño: Glassmorphism responsivo con tonos verde ecológico (#2ecc71 / #27ae60)
+   ========================================================================== */
+
+:root {
+    --eco-green: #2ecc71;
+    --eco-dark-green: #27ae60;
+    --eco-glass-bg: rgba(255, 255, 255, 0.12);
+    --eco-glass-border: rgba(255, 255, 255, 0.25);
+    --eco-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   1. OVERLAY DE PANTALLA DE CARGA (LOADING SCREEN DEL SISTEMA)
+   -------------------------------------------------------------------------- */
+#ecoLoadingOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.eco-spinner-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eco-spinner-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 4px solid rgba(46, 204, 113, 0.2);
+    border-top: 4px solid var(--eco-green);
+    animation: ecoSpin 1s linear infinite;
+}
+
+.eco-spinner-icon {
+    font-size: 2rem;
+    animation: ecoPulse 1.5s ease-in-out infinite;
+}
+
+#ecoLoadingText {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    letter-spacing: 0.5px;
+}
+
+#ecoLoadingSubtext {
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+@keyframes ecoSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes ecoPulse {
+    0%, 100% { transform: scale(0.9); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. BOTÓN FLOTANTE Y VENTANA CHATBOT (GEMINI ECO-AI)
+   -------------------------------------------------------------------------- */
+.eco-chatbot-fab {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: linear-gradient(135deg, #2ecc71, #0f766e);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.eco-chatbot-fab:hover {
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 12px 30px rgba(46, 204, 113, 0.7);
+}
+
+.eco-chatbot-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: #e74c3c;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+/* Ventana emergente del Chatbot */
+.eco-chat-window {
+    display: none;
+    position: fixed;
+    bottom: 95px;
+    right: 25px;
+    width: 380px;
+    max-width: calc(100vw - 40px);
+    height: 520px;
+    max-height: calc(100vh - 120px);
+    background: rgba(20, 30, 45, 0.85);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    animation: ecoSlideUp 0.3s ease forwards;
+}
+
+@keyframes ecoSlideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.eco-chat-header {
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.3), rgba(15, 118, 110, 0.4));
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.eco-chat-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.05rem;
+}
+
+.eco-chat-status {
+    font-size: 0.75rem;
+    color: #2ecc71;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.eco-chat-status::before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: #2ecc71;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #2ecc71;
+}
+
+.eco-chat-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.4rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.eco-chat-body {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Burbujas de chat */
+.eco-msg {
+    max-width: 82%;
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 0.92rem;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.eco-msg-bot {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.eco-msg-user {
+    background: var(--eco-dark-green);
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 3px 10px rgba(46, 204, 113, 0.3);
+}
+
+/* Sugerencias rápidas (Chips) */
+.eco-chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+.eco-chip {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid rgba(46, 204, 113, 0.4);
+    color: #e2f8ec;
+    padding: 6px 11px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.eco-chip:hover {
+    background: rgba(46, 204, 113, 0.4);
+    transform: translateY(-1px);
+}
+
+.eco-chat-footer {
+    padding: 10px 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    gap: 8px;
+}
+
+.eco-chat-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    padding: 10px 16px;
+    color: white;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.eco-chat-input:focus {
+    border-color: var(--eco-green);
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.eco-chat-send {
+    background: var(--eco-green);
+    border: none;
+    color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.eco-chat-send:hover {
+    background: var(--eco-dark-green);
+}
+
+/* --------------------------------------------------------------------------
+   3. MODAL UNIVERSAL PARA SOPORTE, TESTIMONIOS Y CARNÉ QR
+   -------------------------------------------------------------------------- */
+.eco-modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    animation: ecoFadeIn 0.25s ease;
+}
+
+@keyframes ecoFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.eco-modal-card {
+    background: rgba(26, 38, 57, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 28px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    animation: ecoScaleUp 0.25s ease;
+}
+
+@keyframes ecoScaleUp {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.eco-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.eco-modal-close:hover {
+    background: rgba(231, 76, 60, 0.8);
+    transform: rotate(90deg);
+}
+
+.eco-modal-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--eco-green);
+}
+
+.eco-modal-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Tarjeta del Carné QR */
+.eco-qr-card {
+    background: white;
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+    color: #2c3e50;
+    margin: 15px 0;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.eco-qr-image {
+    width: 190px;
+    height: 190px;
+    margin: 10px auto;
+    border: 3px solid #2ecc71;
+    border-radius: 12px;
+    padding: 8px;
+    background: white;
+}
+
+.eco-qr-holder {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #27ae60;
+    margin-top: 8px;
+}
+
+.eco-qr-id {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-family: monospace;
+}
+
+/* Sección de Testimonios y Estrellas */
+.eco-testimonial-item {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.eco-stars {
+    color: #f1c40f;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.eco-testimonial-text {
+    font-size: 0.95rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.eco-testimonial-author {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--eco-green);
+    margin-top: 6px;
+    text-align: right;
+}
+
+/* Calificación con estrellas interactivas */
+.eco-star-rating {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    font-size: 2rem;
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.eco-star-rating span {
+    color: rgba(255, 255, 255, 0.3);
+    transition: color 0.2s, transform 0.2s;
+}
+
+.eco-star-rating span.active,
+.eco-star-rating span:hover {
+    color: #f1c40f;
+    transform: scale(1.15);
+}
+
+/* Botón estilizado general para modales */
+.eco-btn-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: var(--eco-green);
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+    transition: all 0.2s;
+    margin-top: 10px;
+}
+
+.eco-btn-action:hover {
+    background: var(--eco-dark-green);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.6);
+}
+
+.eco-btn-whatsapp {
+    background: #25d366 !important;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4) !important;
+}
+
+.eco-btn-whatsapp:hover {
+    background: #1da851 !important;
+}

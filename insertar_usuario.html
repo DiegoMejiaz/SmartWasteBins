@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear cuenta · Smart Waste Bin</title>
+    <link rel="stylesheet" href="eco_widgets.css">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <main class="acceso" style="padding-top:32px">
+        <div class="tarjeta">
+            <a href="index.html" class="volver"><svg class="icono icono-sm"><use href="iconos.svg#back"></use></svg> Volver al inicio</a>
+            <h2 style="font-size:1.5rem;margin-top:8px">Crea tu cuenta</h2>
+            <p class="texto-sec" style="margin:4px 0 20px">Empieza a acumular eco-puntos por cada kilo que recicles.</p>
+
+            <form method="POST" action="insertar_usuario.php">
+                <div class="paso">Datos personales</div>
+                <div class="campo">
+                    <label for="id_usuario">ID de usuario (5 dígitos)</label>
+                    <div class="entrada">
+                        <svg class="icono"><use href="iconos.svg#badge"></use></svg>
+                        <input type="text" name="id_usuario" id="id_usuario" placeholder="Ej: 12345" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" title="Debe tener exactamente 5 números" required>
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="nombre_completo">Nombre completo</label>
+                    <div class="entrada">
+                        <svg class="icono"><use href="iconos.svg#person"></use></svg>
+                        <input type="text" name="nombre_completo" id="nombre_completo" placeholder="Ej: Juan Pérez" autocomplete="name" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios" required>
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="correo">Correo electrónico</label>
+                    <div class="entrada">
+                        <svg class="icono"><use href="iconos.svg#email"></use></svg>
+                        <input type="email" name="correo" id="correo" placeholder="correo@ejemplo.com" autocomplete="email" required>
+                    </div>
+                </div>
+
+                <div class="paso">Acceso</div>
+                <div class="campo">
+                    <label for="usuario">Nombre de usuario</label>
+                    <div class="entrada">
+                        <svg class="icono"><use href="iconos.svg#person"></use></svg>
+                        <input type="text" name="usuario" id="usuario" placeholder="juanp123" autocomplete="username" pattern="^[a-zA-Z0-9]+$" title="Solo se permiten letras y números (sin espacios)" required>
+                    </div>
+                    <p class="ayuda">Solo letras y números, sin espacios.</p>
+                </div>
+                <button type="submit" class="boton bloque" style="margin-top:8px">Crear cuenta</button>
+            </form>
+        </div>
+
+        <p style="margin-top:20px" class="texto-sec">¿Ya tienes cuenta? <a href="login.html" style="font-weight:700;text-decoration:none">Inicia sesión</a></p>
+        <div class="acceso-pie">Smart Waste Bin · Sistema de gestión de residuos</div>
+    </main>
+    <script src="eco_widgets.js"></script>
+</body>
+</html>
