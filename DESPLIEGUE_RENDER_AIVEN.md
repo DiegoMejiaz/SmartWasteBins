@@ -28,7 +28,7 @@ En PowerShell, dentro de la carpeta `Smart_waste_bin_6to_semestre`:
 ```powershell
 $env:DB_HOST="TU-HOST.aivencloud.com"; $env:DB_PORT="12345"; $env:DB_USER="avnadmin"
 $env:DB_PASSWORD = Read-Host "Contraseña de Aiven"
-$env:DB_NAME="bd_smartbin"; $env:DB_CA_CERT = Get-Content .\ca.pem -Raw
+$env:DB_NAME="defaultdb"; $env:DB_CA_CERT = Get-Content .\ca.pem -Raw
 C:\xampp\php\php.exe herramientas\importar_bd.php
 ```
 

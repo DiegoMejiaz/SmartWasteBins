@@ -19,6 +19,6 @@ services:
       - key: DB_PASSWORD
         sync: false
       - key: DB_NAME
-        value: bd_smartbin
+        value: defaultdb   # base que Aiven crea por defecto
       - key: DB_CA_CERT
         sync: false
