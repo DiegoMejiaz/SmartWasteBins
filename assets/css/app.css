@@ -73,6 +73,19 @@ body {
     min-height: 100vh;
 }
 
+/* Fondo de hojas, borroso y aclarado con el color de fondo para que el contenido se lea bien */
+body::before {
+    content: "";
+    position: fixed;
+    inset: -40px;
+    z-index: -1;
+    background:
+        linear-gradient(color-mix(in srgb, var(--fondo) 55%, transparent), color-mix(in srgb, var(--fondo) 55%, transparent)),
+        url("../img/background.jpg") center / cover no-repeat;
+    filter: blur(8px);
+    pointer-events: none;
+}
+
 a { color: var(--primario); }
 
 h1, h2, h3 { margin: 0; line-height: 1.25; }
@@ -413,4 +426,5 @@ table.tabla { width: 100%; border-collapse: collapse; min-width: 640px; }
 @media print {
     .barra, .no-imprimir, .eco-chatbot-fab { display: none !important; }
     body { background: #fff; }
+    body::before { display: none; }
 }
