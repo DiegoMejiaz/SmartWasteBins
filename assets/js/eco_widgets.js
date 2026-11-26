@@ -67,12 +67,13 @@
                 
                 <div style="background: rgba(255,255,255,0.08); padding: 15px; border-radius: 14px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.15);">
                     <div style="margin-bottom: 8px;"><strong>🏢 Institución:</strong> Fundación Universitaria Colombo Internacional (UNICOLOMBO)</div>
-                    <div style="margin-bottom: 8px;"><strong>👨‍💻 Líder Técnico:</strong> Klever Polo Bolívar & Equipo SWB 6to Semestre</div>
+                    <div style="margin-bottom: 8px;"><strong>👥 Equipo:</strong> Grupo Smart Waste Bins</div>
+                    <div style="margin-bottom: 8px;"><strong>📱 Teléfono:</strong> <a href="tel:+573053339242" style="color: inherit;">+57 305 3339242</a></div>
                     <div style="margin-bottom: 8px;"><strong>✉️ Correo:</strong> soporte.smartbin@unicolombo.edu.co</div>
                     <div style="margin-bottom: 8px;"><strong>🕒 Horario:</strong> Lun a Vie 8:00 AM - 6:00 PM · Sáb 8:00 AM - 12:00 M</div>
                 </div>
 
-                <a href="https://wa.me/573001234567?text=Hola,%20solicito%20asistencia%20t%C3%A9cnica%20con%20la%20plataforma%20Smart%20Waste%20Bin" target="_blank" class="eco-btn-action eco-btn-whatsapp">
+                <a href="https://wa.me/573053339242?text=Hola,%20solicito%20asistencia%20t%C3%A9cnica%20con%20la%20plataforma%20Smart%20Waste%20Bin" target="_blank" class="eco-btn-action eco-btn-whatsapp">
                     <span>💬</span> Chatear con Soporte por WhatsApp
                 </a>
             </div>
@@ -310,7 +311,7 @@
             return `📞 <strong>Mesa de Ayuda y Soporte:</strong><br/>
             ¿Necesitas ayuda técnica? Puedes escribirnos directamente a:<br/>
             • Correo: <code>soporte.smartbin@unicolombo.edu.co</code><br/>
-            • WhatsApp de Soporte: <a href="https://wa.me/573001234567" target="_blank" style="color: #2ecc71; text-decoration: underline;">Abrir WhatsApp</a>`;
+            • WhatsApp de Soporte: <a href="https://wa.me/573053339242" target="_blank" style="color: #2ecc71; text-decoration: underline;">Abrir WhatsApp</a>`;
         }
 
         // Respuesta genérica inteligente

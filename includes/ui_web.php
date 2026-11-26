@@ -67,6 +67,7 @@ function paginaInicio(string $titulo, array $opciones = []): void {
     <meta name="theme-color" content="#F5F8F4" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0F1410" media="(prefers-color-scheme: dark)">
     <title><?= e($titulo) ?> · Smart Waste Bin</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
     <link rel="stylesheet" href="../assets/css/eco_widgets.css">
     <link rel="stylesheet" href="../assets/css/app.css">
     <?php if (!empty($opciones['swal'])): ?><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script><?php endif; ?>
@@ -164,6 +165,7 @@ function paginaAlerta(string $icono, string $titulo, string $html, string $redir
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= e($titulo) ?> · Smart Waste Bin</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
     <link rel="stylesheet" href="../assets/css/app.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
 </head>
