@@ -7,10 +7,10 @@ $id_usuario = exigirUsuario($conn);
 
 $filas = obtenerFilas(
     $conn,
-    "SELECT u.id_usuario, u.nombre, u.usuario, cp.saldo_actual
+    "SELECT u.id_usuario, u.nombre, u.usuario, " . sqlPuntosAcumulados() . " AS saldo_actual
      FROM usuario u
      JOIN cuenta_puntos cp ON u.id_usuario = cp.id_usuario
-     ORDER BY cp.saldo_actual DESC, u.id_usuario ASC
+     ORDER BY saldo_actual DESC, u.id_usuario ASC
      LIMIT 10"
 );
 
@@ -27,12 +27,13 @@ foreach ($filas as $i => $f) {
     ];
 }
 
-// Posición del usuario autenticado (aunque no esté en el top 10)
-$mio = obtenerFila($conn, "SELECT IFNULL(saldo_actual, 0) AS saldo FROM cuenta_puntos WHERE id_usuario = ?", "i", $id_usuario);
-$mis_puntos = (int) ($mio['saldo'] ?? 0);
+// Posición del usuario autenticado (aunque no esté en el top 10), por puntos acumulados
+$acumulados = "SELECT cp.id_usuario, " . sqlPuntosAcumulados() . " AS pts FROM cuenta_puntos cp";
+$mio = obtenerFila($conn, "SELECT pts FROM ($acumulados) a WHERE id_usuario = ?", "i", $id_usuario);
+$mis_puntos = (int) ($mio['pts'] ?? 0);
 $delante = obtenerFila(
     $conn,
-    "SELECT COUNT(*) AS n FROM cuenta_puntos WHERE saldo_actual > ? OR (saldo_actual = ? AND id_usuario < ?)",
+    "SELECT COUNT(*) AS n FROM ($acumulados) a WHERE pts > ? OR (pts = ? AND id_usuario < ?)",
     "iii", $mis_puntos, $mis_puntos, $id_usuario
 );
 $total = obtenerFila($conn, "SELECT COUNT(*) AS n FROM cuenta_puntos");

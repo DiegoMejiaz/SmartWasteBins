@@ -6,7 +6,7 @@ $medallas = [1 => '#C9A227', 2 => '#9AA5AE', 3 => '#B87333'];
 <main class="contenedor contenedor-angosto">
     <div class="encabezado">
         <h1>Top recicladores</h1>
-        <p>Los 10 ciudadanos con más eco-puntos.</p>
+        <p>Los 10 ciudadanos con más eco-puntos acumulados (canjear no te baja de puesto).</p>
     </div>
 
     <?php if ($top): ?>

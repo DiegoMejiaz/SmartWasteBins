@@ -40,6 +40,16 @@ function siguienteRango(int $puntos): ?array {
     return null;
 }
 
+/**
+ * Expresión SQL de los puntos acumulados (histórico): saldo actual + todo lo canjeado.
+ * Rango, barra de progreso y clasificación usan este valor, así canjear no hace bajar de rango
+ * ni de puesto; solo descuenta del saldo disponible. $cp es el alias de la tabla cuenta_puntos.
+ */
+function sqlPuntosAcumulados(string $cp = 'cp'): string {
+    return "(IFNULL($cp.saldo_actual, 0) + IFNULL((SELECT SUM(ABS(tc.cantidad)) FROM transaccion_puntos tc
+             WHERE tc.id_cuenta = $cp.id_cuenta AND (tc.tipo LIKE 'CANJE%' OR tc.tipo LIKE '%RETIRO%')), 0))";
+}
+
 /** Error de validación o de negocio del canje (mensaje apto para mostrar al usuario). */
 class CanjeException extends Exception {
     public int $codigoHttp;

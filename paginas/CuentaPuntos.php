@@ -14,6 +14,7 @@ $id_usuario = intval($_SESSION['user_id']);
 
 $stmt = mysqli_prepare($conn,
     "SELECT u.nombre, u.usuario, u.rol, IFNULL(cp.saldo_actual, 0) AS saldo_actual,
+            " . sqlPuntosAcumulados() . " AS acumulados,
             (SELECT IFNULL(SUM(peso), 0) FROM residuo r WHERE r.id_usuario = u.id_usuario) AS total_peso
      FROM usuario u
      LEFT JOIN cuenta_puntos cp ON u.id_usuario = cp.id_usuario
@@ -33,8 +34,9 @@ $nombre_usuario = !empty($user_data['usuario']) ? $user_data['usuario'] : "Invit
 $puntos = (int) $user_data['saldo_actual'];
 $total_peso = (float) $user_data['total_peso'];
 $rol_usuario = $user_data['rol'] ?? 'user';
-$rango = rangoPorPuntos($puntos);
-$siguiente = siguienteRango($puntos);
+$acumulados = (int) $user_data['acumulados']; // no baja al canjear
+$rango = rangoPorPuntos($acumulados);
+$siguiente = siguienteRango($acumulados);
 
 // Mantener la sesión al día con los datos actuales
 $_SESSION['user_name'] = $nombre_completo;
