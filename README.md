@@ -5,7 +5,7 @@ index.html      Página de inicio (portada)
 paginas/        Pantallas que ve el usuario: login, panel de puntos, depósitos, canjes, clasificación, mapa, admin
 vistas/         Plantillas HTML de cada pantalla (paginas/X.php carga vistas/X.view.php)
 acciones/       Procesan formularios y redirigen: login, registro, depositar, canjear, editar, eliminar, cerrar sesión
-includes/       Código compartido: conexión a la base de datos, reglas de puntos y canjes, diseño común
+includes/       Código compartido: conexión a la base de datos, cuentas (registro e inicio de sesión), reglas de puntos y canjes, diseño común
 api/            API JSON que usa la app móvil (la ruta /api/ no debe cambiar)
 assets/         css/, js/ e img/ (estilos, scripts, íconos e imágenes)
 database/       Script SQL de la base de datos (bd_smartbin.sql)

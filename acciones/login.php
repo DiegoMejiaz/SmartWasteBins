@@ -1,39 +1,32 @@
 <?php
-// login.php - Inicio de sesión web (correo + nombre de usuario)
+// login.php - Inicio de sesión web (documento o alias + contraseña, igual que la app móvil)
 session_start();
 require_once __DIR__ . "/../includes/db.php";
 require_once __DIR__ . "/../includes/ui_web.php";
+require_once __DIR__ . "/../includes/cuentas.php";
 
-if (!isset($_POST['correo'], $_POST['usuario'])) {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['usuario'], $_POST['contrasena'])) {
     header("Location: ../paginas/login.html");
     exit();
 }
 
-$stmt = mysqli_prepare($conn, "SELECT id_usuario, nombre, rol FROM usuario WHERE correo = ? AND usuario = ? LIMIT 1");
-mysqli_stmt_bind_param($stmt, "ss", $_POST['correo'], $_POST['usuario']);
-mysqli_stmt_execute($stmt);
-$user_data = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
-
-if ($user_data) {
-    session_regenerate_id(true); // evita fijación de sesión
-    $_SESSION['user_id'] = $user_data['id_usuario'];
-    $_SESSION['user_name'] = $user_data['nombre'];
-    $_SESSION['user_role'] = $user_data['rol'];
-
-    paginaAlerta(
-        'success',
-        '¡Bienvenido(a), ' . $user_data['nombre'] . '!',
-        'Cargando tu panel…',
-        '../paginas/CuentaPuntos.php',
-        'Continuar',
-        1500
-    );
+try {
+    $user_data = autenticarUsuario($conn, (string) $_POST['usuario'], (string) $_POST['contrasena']);
+} catch (CuentaException $e) {
+    $titulo = $e->getCode() === 403 ? 'Tu cuenta no tiene contraseña' : 'No pudimos iniciar sesión';
+    paginaAlerta('error', $titulo, e($e->getMessage()), '../paginas/login.html', 'Volver a intentar');
 }
 
+session_regenerate_id(true); // evita fijación de sesión
+$_SESSION['user_id'] = $user_data['id_usuario'];
+$_SESSION['user_name'] = $user_data['nombre'];
+$_SESSION['user_role'] = $user_data['rol'];
+
 paginaAlerta(
-    'error',
-    'Credenciales incorrectas',
-    'El correo o el nombre de usuario no coinciden con nuestros registros.',
-    '../paginas/login.html',
-    'Volver a intentar'
+    'success',
+    '¡Bienvenido(a), ' . $user_data['nombre'] . '!',
+    'Cargando tu panel…',
+    '../paginas/CuentaPuntos.php',
+    'Continuar',
+    1500
 );

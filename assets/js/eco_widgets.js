@@ -349,3 +349,23 @@
         initEcoWidgets();
     }
 })();
+
+
+// Mostrar u ocultar contraseña y comprobar la confirmación (formularios de acceso y registro)
+document.addEventListener("click", function (ev) {
+    const boton = ev.target.closest("[data-ver-clave]");
+    if (!boton) return;
+    const campo = boton.parentElement.querySelector("input");
+    const mostrar = campo.type === "password";
+    campo.type = mostrar ? "text" : "password";
+    boton.textContent = mostrar ? "Ocultar" : "Ver";
+    boton.setAttribute("aria-label", mostrar ? "Ocultar contraseña" : "Mostrar contraseña");
+});
+document.querySelectorAll("[data-confirma]").forEach(function (confirmar) {
+    const original = document.getElementById(confirmar.dataset.confirma);
+    const validar = function () {
+        confirmar.setCustomValidity(confirmar.value === original.value ? "" : "Las contraseñas no coinciden");
+    };
+    confirmar.addEventListener("input", validar);
+    original.addEventListener("input", validar);
+});

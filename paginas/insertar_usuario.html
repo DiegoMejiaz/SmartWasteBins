@@ -17,17 +17,17 @@
             <form method="POST" action="../acciones/insertar_usuario.php">
                 <div class="paso">Datos personales</div>
                 <div class="campo">
-                    <label for="id_usuario">ID de usuario (5 dígitos)</label>
+                    <label for="id_usuario">Documento de identidad</label>
                     <div class="entrada">
                         <svg class="icono"><use href="../assets/img/iconos.svg#badge"></use></svg>
-                        <input type="text" name="id_usuario" id="id_usuario" placeholder="Ej: 12345" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" title="Debe tener exactamente 5 números" required>
+                        <input type="text" name="id_usuario" id="id_usuario" placeholder="Ej: 1234567890" inputmode="numeric" maxlength="10" pattern="[0-9]{1,10}" title="Solo números" required>
                     </div>
                 </div>
                 <div class="campo">
                     <label for="nombre_completo">Nombre completo</label>
                     <div class="entrada">
                         <svg class="icono"><use href="../assets/img/iconos.svg#person"></use></svg>
-                        <input type="text" name="nombre_completo" id="nombre_completo" placeholder="Ej: Juan Pérez" autocomplete="name" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" title="Solo se permiten letras y espacios" required>
+                        <input type="text" name="nombre_completo" id="nombre_completo" placeholder="Ej: Juan Pérez" autocomplete="name" maxlength="100" required>
                     </div>
                 </div>
                 <div class="campo">
@@ -40,12 +40,27 @@
 
                 <div class="paso">Acceso</div>
                 <div class="campo">
-                    <label for="usuario">Nombre de usuario</label>
+                    <label for="usuario">Alias (nombre de usuario)</label>
                     <div class="entrada">
                         <svg class="icono"><use href="../assets/img/iconos.svg#person"></use></svg>
-                        <input type="text" name="usuario" id="usuario" placeholder="juanp123" autocomplete="username" pattern="^[a-zA-Z0-9]+$" title="Solo se permiten letras y números (sin espacios)" required>
+                        <input type="text" name="usuario" id="usuario" placeholder="juanp123" autocomplete="username" autocapitalize="none" minlength="3" maxlength="30" pattern="(?=.*[A-Za-z_.])[A-Za-z0-9_.]{3,30}" title="Entre 3 y 30 caracteres: letras, números, punto o guion bajo (no solo números)" required>
                     </div>
-                    <p class="ayuda">Solo letras y números, sin espacios.</p>
+                    <p class="ayuda">Podrás iniciar sesión con tu documento o con este alias.</p>
+                </div>
+                <div class="campo">
+                    <label for="contrasena">Contraseña</label>
+                    <div class="entrada">
+                        <svg class="icono"><use href="../assets/img/iconos.svg#lock"></use></svg>
+                        <input type="password" name="contrasena" id="contrasena" placeholder="Mínimo 6 caracteres" autocomplete="new-password" minlength="6" maxlength="72" required>
+                        <button type="button" class="ver-clave" data-ver-clave aria-label="Mostrar contraseña">Ver</button>
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="confirmar">Confirmar contraseña</label>
+                    <div class="entrada">
+                        <svg class="icono"><use href="../assets/img/iconos.svg#lock"></use></svg>
+                        <input type="password" name="confirmar" id="confirmar" placeholder="Repite la contraseña" autocomplete="new-password" data-confirma="contrasena" required>
+                    </div>
                 </div>
                 <button type="submit" class="boton bloque" style="margin-top:8px">Crear cuenta</button>
             </form>

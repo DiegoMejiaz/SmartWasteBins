@@ -20,17 +20,18 @@
             <h2 style="font-size:1.375rem;margin:8px 0 20px">Iniciar sesión</h2>
             <form method="POST" action="../acciones/login.php">
                 <div class="campo">
-                    <label for="correo">Correo electrónico</label>
+                    <label for="usuario">Documento o alias</label>
                     <div class="entrada">
-                        <svg class="icono"><use href="../assets/img/iconos.svg#email"></use></svg>
-                        <input type="email" name="correo" id="correo" placeholder="correo@ejemplo.com" autocomplete="email" required>
+                        <svg class="icono"><use href="../assets/img/iconos.svg#person"></use></svg>
+                        <input type="text" name="usuario" id="usuario" placeholder="Tu documento o tu alias" autocomplete="username" autocapitalize="none" required>
                     </div>
                 </div>
                 <div class="campo">
-                    <label for="usuario">Nombre de usuario</label>
+                    <label for="contrasena">Contraseña</label>
                     <div class="entrada">
-                        <svg class="icono"><use href="../assets/img/iconos.svg#person"></use></svg>
-                        <input type="text" name="usuario" id="usuario" placeholder="Tu usuario" autocomplete="username" required>
+                        <svg class="icono"><use href="../assets/img/iconos.svg#lock"></use></svg>
+                        <input type="password" name="contrasena" id="contrasena" placeholder="Tu contraseña" autocomplete="current-password" required>
+                        <button type="button" class="ver-clave" data-ver-clave aria-label="Mostrar contraseña">Ver</button>
                     </div>
                 </div>
                 <button type="submit" class="boton bloque" style="margin-top:8px">Entrar</button>
