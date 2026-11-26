@@ -19,7 +19,7 @@ if (PHP_SAPI !== 'cli') {
     exit();
 }
 
-require_once __DIR__ . '/../conexion_bd.php';
+require_once __DIR__ . '/../includes/conexion_bd.php';
 
 /** Fila única o null. */
 function fila(mysqli $c, string $sql, string $tipos = '', ...$p): ?array {

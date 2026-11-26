@@ -9,6 +9,6 @@
 *.drawio
 *.pem
 .env
-diagramas/
+docs/
+database/
 herramientas/
-bd_smartbin.sql

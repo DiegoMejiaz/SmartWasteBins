@@ -1,7 +1,7 @@
 <?php
 // api/canjear.php - Pasarela de canje de puntos desde la app móvil (requiere sesión)
 require_once __DIR__ . "/config.php";
-require_once __DIR__ . "/../logica_puntos.php";
+require_once __DIR__ . "/../includes/logica_puntos.php";
 exigirMetodo("POST");
 
 $id_usuario = exigirUsuario($conn);

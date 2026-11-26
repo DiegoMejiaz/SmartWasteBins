@@ -14,7 +14,7 @@ if (PHP_SAPI !== 'cli') {
     exit();
 }
 
-require_once __DIR__ . '/../conexion_bd.php';
+require_once __DIR__ . '/../includes/conexion_bd.php';
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 $forzar = in_array('--forzar', $argv, true);
@@ -53,7 +53,7 @@ if ($tablas > 0 && !$forzar) {
     exit(0);
 }
 
-$sql = file_get_contents(__DIR__ . '/../bd_smartbin.sql');
+$sql = file_get_contents(__DIR__ . '/../database/bd_smartbin.sql');
 if ($sql === false) {
     fwrite(STDERR, "No se encontró bd_smartbin.sql.\n");
     exit(1);

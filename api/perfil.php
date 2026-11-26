@@ -1,7 +1,7 @@
 <?php
 // api/perfil.php - Datos de perfil, saldo de puntos, rango y total kg
 require_once __DIR__ . "/config.php";
-require_once __DIR__ . "/../logica_puntos.php";
+require_once __DIR__ . "/../includes/logica_puntos.php";
 
 // Requiere sesión: solo se puede consultar el perfil propio
 $id_usuario = exigirUsuario($conn);

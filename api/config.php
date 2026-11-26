@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // mysqli lanza excepciones en vez de devolver false (capturadas por el handler anterior)
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 define('API_SMARTBIN', true); // db.php lanza la excepción en vez de imprimir texto
-require_once __DIR__ . "/../db.php";
+require_once __DIR__ . "/../includes/db.php";
 
 /**
  * Lee parámetros enviados como JSON o como formulario.

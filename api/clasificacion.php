@@ -1,7 +1,7 @@
 <?php
 // api/clasificacion.php - Top 10 de recicladores (misma consulta que Clasificacion.php) y la posición propia
 require_once __DIR__ . "/config.php";
-require_once __DIR__ . "/../logica_puntos.php";
+require_once __DIR__ . "/../includes/logica_puntos.php";
 
 $id_usuario = exigirUsuario($conn);
 
