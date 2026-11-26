@@ -58,6 +58,16 @@ paginaInicio('Comprobante', [
     </div>
 </main>
 <script>
+// html2canvas no entiende colores "color(srgb …)" (los genera color-mix en el CSS): se pasan a rgba en la copia
+function aRgba(valor) {
+    return valor.replace(/color\(srgb ([-\d.e]+) ([-\d.e]+) ([-\d.e]+)(?: \/ ([\d.e]+))?\)/g, function (m, r, g, b, a) {
+        const c = function (x) { return Math.round(Math.min(1, Math.max(0, parseFloat(x))) * 255); };
+        return 'rgba(' + c(r) + ', ' + c(g) + ', ' + c(b) + ', ' + (a === undefined ? 1 : a) + ')';
+    });
+}
+const PROPIEDADES_COLOR = ['color', 'background-color', 'background-image', 'box-shadow', 'outline-color', 'text-decoration-color',
+    'border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color', 'fill', 'stroke'];
+
 document.getElementById('btnPdf').addEventListener('click', function () {
     if (typeof html2pdf === 'undefined') { window.print(); return; }
     const btn = this;
@@ -66,9 +76,23 @@ document.getElementById('btnPdf').addEventListener('click', function () {
         margin: 0.5,
         filename: 'Comprobante_<?= e($comprobante['referencia']) ?>.pdf',
         image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, backgroundColor: getComputedStyle(document.body).backgroundColor },
+        html2canvas: {
+            scale: 2,
+            backgroundColor: getComputedStyle(document.body).backgroundColor,
+            onclone: function (doc) {
+                doc.querySelectorAll('#comprobante, #comprobante *').forEach(function (n) {
+                    const estilo = doc.defaultView.getComputedStyle(n);
+                    PROPIEDADES_COLOR.forEach(function (p) {
+                        const v = estilo.getPropertyValue(p);
+                        if (v.indexOf('color(') !== -1) n.style.setProperty(p, aRgba(v), 'important');
+                    });
+                });
+            }
+        },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-    }).from(document.getElementById('comprobante')).save().then(function () { btn.disabled = false; });
+    }).from(document.getElementById('comprobante')).save()
+        .catch(function (err) { console.error(err); window.print(); }) // si falla, al menos se puede guardar como PDF al imprimir
+        .then(function () { btn.disabled = false; });
 });
 </script>
 <?php paginaFin(); ?>
